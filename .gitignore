@@ -1,0 +1,20 @@
+# Cadence Virtuoso
+*.log
+*.cdslck
+*.swp
+*.bak
+cds.lib.bak
+.cadence/
+simulation/**/*.raw
+simulation/**/*.psf
+simulation/**/*.ic0
+simulation/**/*.ahdlSimDB
+
+# OS
+Thumbs.db
+.DS_Store
+desktop.ini
+
+# Temp files
+*.tmp
+~$*
