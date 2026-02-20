@@ -34,8 +34,7 @@ Design and simulation of a Miller-Compensated Two-Stage CMOS Operational Amplifi
    - [5.4 PVT Corner Analysis](#54-pvt-corner-analysis)
    - [5.5 Monte Carlo Analysis](#55-monte-carlo-analysis)
 6. [How to Run / Reproduction](#6-how-to-run--reproduction)
-7. [Repository Structure](#7-repository-structure)
-8. [Conclusion](#8-conclusion)
+7. [Conclusion](#7-conclusion)
 
 ---
 
@@ -371,44 +370,7 @@ The Monte Carlo results demonstrate **excellent offset performance**. With σ �
 
 ---
 
-## 7. Repository Structure
-
-```
-Operational-Amplifier-Design/
-│
-├── schematic/
-│   └── Telestikos_Enisxitis_Project_Zeri.tar.gz   # Cadence Virtuoso project archive
-│
-├── images/                          # All simulation screenshots and plots
-│   ├── schematic_main.png
-│   ├── schematic_testbench_clean.png
-│   ├── dc_testbench_current.png
-│   ├── dc_operating_points.png
-│   ├── ac_bode_plot.png
-│   ├── stb_results_table.png
-│   ├── ade_calculator_measurements.png
-│   ├── transient_testbench.png
-│   ├── transient_pulse_response.png
-│   ├── slew_rate_calculator.png
-│   ├── pvt_results_summary_table.png
-│   ├── pvt_pm_vs_temp.png
-│   ├── pvt_a0_gb_vs_temp.png
-│   ├── pvt_isup_vs_temp.png
-│   ├── pvt_voffset_sr_vs_temp.png
-│   ├── bode_plot_corners.png
-│   ├── monte_carlo_process.png
-│   ├── monte_carlo_mismatch_corners.png
-│   └── monte_carlo_process_mismatch.png
-│
-├── report/
-│   └── OpAmp_Project_zerielea.pdf   # Full technical report
-│
-└── README.md
-```
-
----
-
-## 8. Conclusion
+## 7. Conclusion
 
 This project demonstrates the **complete design flow** for a Miller-Compensated Two-Stage CMOS Operational Amplifier, from hand calculations and transistor sizing through full Cadence Virtuoso simulation and statistical verification.
 
