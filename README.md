@@ -43,9 +43,9 @@
 
 ## 1. Project Overview
 
-This repository contains the complete design and simulation of a **Miller-Compensated Two-Stage CMOS Operational Amplifier**, developed as part of the Electronics III course at the Department of Electrical and Computer Engineering, Aristotle University of Thessaloniki (ECE AUTH).
+This repository contains the complete design and simulation of a **Two-Stage CMOS Operational Amplifier**, developed as part of the Electronics III course at the Department of Electrical and Computer Engineering, Aristotle University of Thessaloniki (ECE AUTH).
 
-The primary design challenge was achieving **high DC gain** and a **sufficient gain-bandwidth product (GBW)** while maintaining **unconditional stability** (Phase Margin > 45°) under a tight **50 μA supply current budget** from a low **1 V supply rail**. Stability was secured through careful Miller compensation capacitor sizing, and the final design was stress-tested across **Process-Voltage-Temperature (PVT) corners** and **Monte Carlo statistical mismatch** to validate robustness.
+A primary design goal was achieving closed-loop stability (Phase Margin > 45°) without sacrificing gain or bandwidth, under a tight **50 μA supply current budget** from a low **1 V supply rail**. The final design was stress-tested across **Process-Voltage-Temperature (PVT) corners** and **Monte Carlo statistical mismatch** to validate robustness.
 
 **Key design objectives:**
 - Maximize voltage gain while staying within the power budget
@@ -166,7 +166,7 @@ The total current of **48.12 μA** is comfortably within the 50 μA budget, leav
 | Phase Margin (PM) | **50.68°** |
 | Unity Gain Frequency | ~6.7 MHz |
 
-**Compensation Design Decision:**
+**Miller Compensation Sizing:**
 
 | C<sub>Miller</sub> | Phase Margin | Status |
 |:---:|:---:|:---:|
@@ -216,7 +216,7 @@ The measured SR of **6.766 V/μs** is nearly **7×** the minimum specification o
 </p>
 
 <p align="center">
-  <img src="images/transient_pulse_response.jpg" alt="Transient Analysis — Slew Rate Measurement" width="700"/>
+  <img src="images/transient_pulse_response.png" alt="Transient Analysis — Slew Rate Measurement" width="700"/>
   <br/>
   <em>Figure 3b: Transient response to a 0V–1V pulse input. Slew rate measured on the rising edge.</em>
 </p>
@@ -261,7 +261,7 @@ The measured SR of **6.766 V/μs** is nearly **7×** the minimum specification o
 </p>
 
 <p align="center">
-  <img src="images/pvt_a0_gb_vs_temp.jpg" alt="PVT Corner Sweep — DC Gain and GBW vs Temperature" width="700"/>
+  <img src="images/pvt_a0_gb_vs_temp.png" alt="PVT Corner Sweep — DC Gain and GBW vs Temperature" width="700"/>
   <br/>
   <em>Figure 4c: DC Gain (A₀) and GBW variation across process corners and temperature range.</em>
 </p>
@@ -273,7 +273,7 @@ The measured SR of **6.766 V/μs** is nearly **7×** the minimum specification o
 </p>
 
 <p align="center">
-  <img src="images/pvt_voffset_sr_vs_temp.jpg" alt="PVT Corner Sweep — Voffset and SR vs Temperature" width="700"/>
+  <img src="images/pvt_voffset_sr_vs_temp.png" alt="PVT Corner Sweep — Voffset and SR vs Temperature" width="700"/>
   <br/>
   <em>Figure 4e: Input offset voltage and Slew Rate variation with temperature across process corners.</em>
 </p>
@@ -303,19 +303,19 @@ The measured SR of **6.766 V/μs** is nearly **7×** the minimum specification o
 The Monte Carlo results demonstrate **excellent offset performance**. With σ ≈ 0.7 mV and a worst-case statistical result below 2.5 mV, the design meets the 20 mV offset specification with more than **8×** margin — even accounting for 3σ (2.1 mV) and realistic tail-of-distribution outliers.
 
 <p align="center">
-  <img src="images/monte_carlo_process.jpg" alt="Monte Carlo — Process Variation Results" width="700"/>
+  <img src="images/monte_carlo_process.png" alt="Monte Carlo — Process Variation Results" width="700"/>
   <br/>
   <em>Figure 5a: Monte Carlo results — process variation sweep showing key parameter distributions.</em>
 </p>
 
 <p align="center">
-  <img src="images/monte_carlo_mismatch_corners.jpg" alt="Monte Carlo — Mismatch Across Corners" width="700"/>
+  <img src="images/monte_carlo_mismatch_corners.png" alt="Monte Carlo — Mismatch Across Corners" width="700"/>
   <br/>
   <em>Figure 5b: Monte Carlo mismatch analysis across corners — V<sub>offset</sub> distribution remains tight.</em>
 </p>
 
 <p align="center">
-  <img src="images/monte_carlo_process_mismatch.jpg" alt="Monte Carlo — Combined Process and Mismatch" width="700"/>
+  <img src="images/monte_carlo_process_mismatch.png" alt="Monte Carlo — Combined Process and Mismatch" width="700"/>
   <br/>
   <em>Figure 5c: Combined process + mismatch Monte Carlo. σ ≈ 0.7 mV, worst-case < 2.5 mV, well within the 20 mV spec.</em>
 </p>
@@ -380,25 +380,29 @@ The Monte Carlo results demonstrate **excellent offset performance**. With σ �
 ```
 Operational-Amplifier-Design/
 │
-├── schematic/                  # Cadence Virtuoso schematic files
-│   ├── OpAmp_TwoStage.dsn      # Main schematic (OrCAD/Virtuoso format)
-│   └── ...
+├── schematic/
+│   └── Telestikos_Enisxitis_Project_Zeri.tar.gz   # Cadence Virtuoso project archive
 │
-├── simulation/                 # ADE simulation states and results
-│   ├── dc_analysis/
-│   ├── ac_analysis/
-│   ├── transient_analysis/
-│   ├── pvt_corners/
-│   └── monte_carlo/
-│
-├── images/                     # Simulation screenshots and plots
-│   ├── schematic_overview.png
-│   ├── dc_operating_point.png
+├── images/                          # All simulation screenshots and plots
+│   ├── schematic_main.png
+│   ├── schematic_testbench_clean.png
+│   ├── dc_testbench_current.png
+│   ├── dc_operating_points.png
 │   ├── ac_bode_plot.png
-│   ├── transient_slew_rate.png
-│   ├── pvt_corners_pm.png
-│   ├── pvt_corners_gain.png
-│   └── monte_carlo_voffset_histogram.png
+│   ├── stb_results_table.png
+│   ├── ade_calculator_measurements.png
+│   ├── transient_testbench.png
+│   ├── transient_pulse_response.png
+│   ├── slew_rate_calculator.png
+│   ├── pvt_results_summary_table.png
+│   ├── pvt_pm_vs_temp.png
+│   ├── pvt_a0_gb_vs_temp.png
+│   ├── pvt_isup_vs_temp.png
+│   ├── pvt_voffset_sr_vs_temp.png
+│   ├── bode_plot_corners.png
+│   ├── monte_carlo_process.png
+│   ├── monte_carlo_mismatch_corners.png
+│   └── monte_carlo_process_mismatch.png
 │
 ├── report/
 │   └── OpAmp_Project_zerielea.pdf   # Full technical report
@@ -420,8 +424,6 @@ This project demonstrates the **complete design flow** for a Miller-Compensated 
 - **Slew Rate of 6.766 V/μs** — nearly **7×** the specification floor, ensuring fast large-signal response
 - **PVT robustness** — worst-case Phase Margin of 44.35° (1.4% below spec) at the extreme ff/125°C corner, demonstrating excellent design margins across all realistic operating conditions
 - **Monte Carlo offset: σ ≈ 0.7 mV** — providing an **>8× safety margin** against the 20 mV offset specification, confirming that mismatch effects are well controlled
-
-The final design successfully integrates **high gain, wide bandwidth, strong stability, and low power consumption** within a compact CMOS topology, meeting every performance specification while achieving significant margin across all verification dimensions.
 
 ---
 
