@@ -5,17 +5,15 @@
 </p>
 
 <p align="center">
-  <img src="https://img.shields.io/badge/Tool-Cadence%20Virtuoso-red?style=for-the-badge&logo=data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNCAyNCI+PC9zdmc+" alt="Cadence Virtuoso"/>
+  <img src="https://img.shields.io/badge/Tool-Cadence%20Virtuoso-red?style=for-the-badge" alt="Cadence Virtuoso"/>
   <img src="https://img.shields.io/badge/Technology-CMOS-blue?style=for-the-badge" alt="CMOS"/>
   <img src="https://img.shields.io/badge/Topology-Two--Stage%20Miller%20Compensated-green?style=for-the-badge" alt="Topology"/>
-  <img src="https://img.shields.io/badge/Supply-1V-orange?style=for-the-badge" alt="Supply Voltage"/>
-  <img src="https://img.shields.io/badge/Course-Electronics%20III-purple?style=for-the-badge" alt="Course"/>
-  <img src="https://img.shields.io/badge/University-ECE%20AUTH-lightgrey?style=for-the-badge" alt="ECE AUTH"/>
+  <img src="https://img.shields.io/badge/Supply-1%20V-orange?style=for-the-badge" alt="Supply Voltage"/>
 </p>
 
 ---
 
-> **Design and full simulation of a Miller-Compensated Two-Stage CMOS Operational Amplifier** using Cadence Virtuoso. The design achieves robust performance across DC, AC, and Transient analyses, verified through PVT corner sweeps and Monte Carlo mismatch simulations.
+Design and simulation of a Miller-Compensated Two-Stage CMOS Operational Amplifier using Cadence Virtuoso. The design covers DC, AC, and Transient analyses, verified through PVT corner sweeps and Monte Carlo mismatch simulations.
 
 **Author:** Eleana Zeri  
 **Course:** Electronics III — ECE, Aristotle University of Thessaloniki (AUTH)  
@@ -45,7 +43,7 @@
 
 This repository contains the complete design and simulation of a **Two-Stage CMOS Operational Amplifier**, developed as part of the Electronics III course at the Department of Electrical and Computer Engineering, Aristotle University of Thessaloniki (ECE AUTH).
 
-A primary design goal was achieving closed-loop stability (Phase Margin > 45°) without sacrificing gain or bandwidth, under a tight **50 μA supply current budget** from a low **1 V supply rail**. The final design was stress-tested across **Process-Voltage-Temperature (PVT) corners** and **Monte Carlo statistical mismatch** to validate robustness.
+A primary design goal was achieving closed-loop stability (Phase Margin > 45°) without sacrificing gain or bandwidth, under a tight **50 μA supply current budget** from a low **1 V supply rail**. The final design was verified across **Process-Voltage-Temperature (PVT) corners** and **Monte Carlo statistical mismatch** to validate robustness.
 
 **Key design objectives:**
 - Maximize voltage gain while staying within the power budget
@@ -57,20 +55,18 @@ A primary design goal was achieving closed-loop stability (Phase Margin > 45°) 
 
 ## 2. Specifications vs. Achieved Performance
 
-All targets defined in the project specifications were **met or significantly exceeded** at the nominal operating point (TT corner, 27°C, Vdd = 1V).
+All specifications were met at the nominal operating point (TT corner, 27°C, V<sub>DD</sub> = 1 V).
 
 | Parameter | Symbol | Specification | Achieved | Status |
 |:---|:---:|:---:|:---:|:---:|
-| Supply Voltage | V<sub>DD</sub> | 1 V | 1 V | ✅ |
-| Load Capacitance | C<sub>L</sub> | 4 pF | 4 pF | ✅ |
-| Supply Current | I<sub>sup</sub> | ≈ 50 μA | **48.12 μA** | ✅ |
-| DC Gain | A<sub>v</sub> | > 30 dB | **53.07 dB** | ✅ ⬆ |
-| Gain-Bandwidth Product | GBW | > 500 kHz | **6.685 MHz** | ✅ ⬆ |
-| Phase Margin | PM | > 45° | **50.68°** | ✅ |
-| Slew Rate | SR | ≥ 1 V/μs | **6.766 V/μs** | ✅ ⬆ |
-| Input Offset Voltage | V<sub>offset</sub> | < 20 mV | **0.118 mV** | ✅ ⬆ |
-
-> ⬆ Denotes performance that substantially exceeds the minimum specification.
+| Supply Voltage | V<sub>DD</sub> | 1 V | 1 V | Pass |
+| Load Capacitance | C<sub>L</sub> | 4 pF | 4 pF | Pass |
+| Supply Current | I<sub>sup</sub> | ≈ 50 μA | **48.12 μA** | Pass |
+| DC Gain | A<sub>v</sub> | > 30 dB | **53.07 dB** | Pass |
+| Gain-Bandwidth Product | GBW | > 500 kHz | **6.685 MHz** | Pass |
+| Phase Margin | PM | > 45° | **50.68°** | Pass |
+| Slew Rate | SR | ≥ 1 V/μs | **6.766 V/μs** | Pass |
+| Input Offset Voltage | V<sub>offset</sub> | < 20 mV | **0.118 mV** | Pass |
 
 ---
 
@@ -137,7 +133,7 @@ All simulations were performed using **Cadence ADE L / ADE XL**. The following s
 | Bias Current (NM8 branch) | ≈ 4.5 μA |
 | First Stage Tail Current | ≈ 13.2 μA |
 | Second Stage Current | ≈ 30.4 μA |
-| All transistors | **In Saturation** ✅ |
+| All transistors | **In Saturation** |
 
 The total current of **48.12 μA** is comfortably within the 50 μA budget, leaving a small headroom for PVT variations.
 
@@ -170,8 +166,8 @@ The total current of **48.12 μA** is comfortably within the 50 μA budget, leav
 
 | C<sub>Miller</sub> | Phase Margin | Status |
 |:---:|:---:|:---:|
-| ~1 pF (initial) | 34.7° | ❌ Unstable |
-| **~2 pF (final)** | **50.68°** | ✅ Stable |
+| ~1 pF (initial) | 34.7° | Fail — PM spec not met |
+| **~2 pF (final)** | **50.68°** | Pass |
 
 Doubling the Miller capacitor created sufficient pole splitting to meet the 45° PM target. The GBW of **6.685 MHz** — more than **13×** the minimum specification — demonstrates that stability was achieved without sacrificing bandwidth.
 
@@ -240,11 +236,11 @@ The measured SR of **6.766 V/μs** is nearly **7×** the minimum specification o
 
 | Corner | Temperature | DC Gain | GBW | Phase Margin | Status |
 |:---:|:---:|:---:|:---:|:---:|:---:|
-| tt | 27°C | 53.07 dB | 6.685 MHz | 50.68° | ✅ |
-| ff | −40°C | — | — | — | ✅ |
-| ff | **125°C** | — | — | **44.35°** | ⚠️ |
-| ss | −40°C | — | — | — | ✅ |
-| ss | 125°C | — | — | — | ✅ |
+| tt | 27°C | 53.07 dB | 6.685 MHz | 50.68° | Pass |
+| ff | −40°C | — | — | — | Pass |
+| ff | **+125°C** | — | — | **44.35°** | Marginal |
+| ss | −40°C | — | — | — | Pass |
+| ss | +125°C | — | — | — | Pass |
 
 > **Worst-case PM: 44.35°** at the hot/fast (ff, 125°C) corner — a deviation of only **1.4%** from the 45° specification. This is a **negligible margin** that confirms the design's inherent robustness and is well within typical engineering tolerance for analog design at extreme process corners.
 
